@@ -109,7 +109,7 @@ train_data.drop(["Route", "Additional_Info"], axis = 1, inplace = True)
 train_data.replace({"non-stop": 0, "1 stop": 1, "2 stops": 2, "3 stops": 3, "4 stops": 4}, inplace = True)
 
 
-data_train = pd.concat([train_data, Source, Destination], axis = 1)
+data_train = pd.concat([train_data, Airline,Source, Destination], axis = 1)
 
 data_train.drop(["Airline", "Source", "Destination"], axis = 1, inplace = True)
 
@@ -306,7 +306,7 @@ print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, prediction)))
 file = open('flight_rf.pkl', 'wb')
 
 # dump information to that file
-pickle.dump(reg_rf, file)
+pickle.dump(rf_random, file)
 
 model = open('flight_rf.pkl','rb')
 forest = pickle.load(model)
